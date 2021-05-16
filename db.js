@@ -5,7 +5,7 @@ const option = {
     useUnifiedTopology: true,
     useNewUrlParser: true,
   };
-  mongoose.connect("mongodb://localhost:27017/Alpha_DB", option).then(
+  mongoose.connect("mongodb://localhost:27017/TodoDb", option).then(
       ()=>{ console.log("DB connected");},
       (err)=>{console.log(err);}
   )
