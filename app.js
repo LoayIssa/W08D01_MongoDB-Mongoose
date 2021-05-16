@@ -39,15 +39,32 @@ app.get("/todos", (req, res) => {
 });
 
 /*________________________ */
+app.put("/update/todo/:task", (req, res) => {
+  const Utask = req.params.task
+  const { task, description, deadline, isCompleted, priority } = req.body;
 
+  todoModel.findOneAndUpdate({task:Utask}, { task, description, deadline, isCompleted, priority }).then((result)=>{
+      res.status(200)
+      res.json(result)
+  }).catch((err)=>{res.json(err)})
+    
+});
+
+/*________________________ */
+app.delete("/delete/todo/:task", (req, res) => {
+  const Utask = req.params.task
+  todoModel.findOneAndDelete({task:Utask}).then((result)=>{
+      res.status(200);
+      res.json(result);
+  }).catch((err)=>{res.json(err)})
+});
 
 
 
 
 
  
-// app.put("/update/todo", (req, res) => {});
-// app.delete("/delete/todo", (req, res) => {});
+
 
 const port = 3000;
 app.listen(port, () => {
